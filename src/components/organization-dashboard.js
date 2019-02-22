@@ -7,9 +7,11 @@ import getOrgEvents from "../utils/fetchEvent";
 import EventCard from "./eventcard";
 import OrgPublicPageEventList from "./org-public-page-event-list";
 import "../stylesheets/org-dashboard-styles/org-dash-main.css";
+import { Link } from 'react-router-dom';
 
 const OrganizationDashboard = props => {
   const orgId = props.match.params.id;
+  const publicPageUrl = `/organization/${orgId}`
   const [view, setView] = useState(<OrgPublicPageEventList id={orgId} />);
   const [org, setOrgs] = useState(null);
   const [events, setEvents] = useState(null);
@@ -67,6 +69,13 @@ const OrganizationDashboard = props => {
             >
               Promote Event
             </button>
+            <button
+              disabled
+              className="org-main-button"
+            >
+              <Link to={publicPageUrl}>View your public page</Link>
+            </button>
+
           </div>
 
           <div className="org-main-events">{view}</div>
